@@ -4,8 +4,7 @@ from typing import List
 
 
 class SelectColumns(Transformer):
-    """
-    Transformer that selects from a DataFrame only the specified columns.
+    """Transformer that selects from a DataFrame only the specified columns.
     """
 
     def __init__(self, columns: List[str]):

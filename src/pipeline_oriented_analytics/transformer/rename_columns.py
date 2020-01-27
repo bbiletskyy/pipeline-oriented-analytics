@@ -4,8 +4,7 @@ from typing import Dict
 
 
 class RenameColumns(Transformer):
-    """
-    Renames columns in a DataFrame using the provided dictionary of old->new names.
+    """Renames columns in a DataFrame using the provided dictionary of old->new names.
     """
 
     def __init__(self, column_names: Dict[str, str]):
