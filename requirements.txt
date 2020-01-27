@@ -1,0 +1,6 @@
+# external dependencies
+pyspark==2.4.4
+s2sphere==0.2.5
+
+# local setup.py
+-e .
