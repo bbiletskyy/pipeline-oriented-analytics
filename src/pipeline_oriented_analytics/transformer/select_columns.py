@@ -9,7 +9,7 @@ class SelectColumns(Transformer):
 
     def __init__(self, columns: List[str]):
         super(SelectColumns, self).__init__()
-        self.columns = columns
+        self._columns = columns
 
     def _transform(self, dataset: DataFrame):
-        return dataset.select(self.columns)
+        return dataset.select(self._columns)
