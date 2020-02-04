@@ -17,8 +17,7 @@ class SphereDistance(Transformer):
 
     def _transform(self, dataset: DataFrame) -> DataFrame:
         return dataset.withColumn(
-            self._output_col_name,
-            self._distance_udf(f.col(self._from_col), f.col(self._to_col))
+            self._output_col_name, f.round(self._distance_udf(f.col(self._from_col), f.col(self._to_col)), 2)
         )
 
     @staticmethod

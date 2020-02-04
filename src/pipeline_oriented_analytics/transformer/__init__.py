@@ -7,5 +7,10 @@ from .union import *
 from .drop_duplicates import *
 from .sphere_distance import *
 from .save_to_parquet import *
+from .drop_columns import *
+from .show import *
+from .sample import *
+
+
 
 

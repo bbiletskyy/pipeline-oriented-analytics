@@ -8,7 +8,7 @@ class DropDuplicates(Transformer):
 
     def __init__(self, cols: List[str] = None):
         super(DropDuplicates, self).__init__()
-        self.cols = cols
+        self._cols = cols
 
     def _transform(self, dataset: DataFrame) -> DataFrame:
-        return dataset.dropDuplicates(self.cols)
+        return dataset.dropDuplicates(self._cols)

@@ -9,7 +9,7 @@ class Union(Transformer):
 
     def __init__(self, with_df: DataFrame):
         super(Union, self).__init__()
-        self.with_df = with_df
+        self._with_df = with_df
 
     def _transform(self, dataset: DataFrame):
-        return dataset.union(self.with_df)
+        return dataset.union(self._with_df)

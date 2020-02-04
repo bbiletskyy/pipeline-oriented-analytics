@@ -12,10 +12,10 @@ class TestCellId(object):
 
         res_df = CellId(12, 'lat', 'lon', 'cell_id').transform(requests_df)
         assert res_df.count() == requests_df.count()
-        assert set(res_df.columns) == set(requests_df.columns).union({'cell_id_12'})
-        assert res_df.where(f.col('request_id') == 1).where(f.col('cell_id_12') == 'ba64c31').count() == 1
-        assert res_df.where(f.col('request_id') == 2).where(f.col('cell_id_12') == 'ba64dd1').count() == 1
-        assert res_df.where(f.col('request_id') == 3).where(f.col('cell_id_12') == 'ba64de1').count() == 1
+        assert set(res_df.columns) == set(requests_df.columns).union({'cell_id'})
+        assert res_df.where(f.col('request_id') == 1).where(f.col('cell_id') == 'ba64c31').count() == 1
+        assert res_df.where(f.col('request_id') == 2).where(f.col('cell_id') == 'ba64dd1').count() == 1
+        assert res_df.where(f.col('request_id') == 3).where(f.col('cell_id') == 'ba64de1').count() == 1
 
     def test_cell_id_udf(self):
         lat, lng = -12.05737, -77.135816
@@ -46,4 +46,4 @@ class TestCellId(object):
         test_df = spark.createDataFrame(test_data, column_names)
 
         res_df = CellId(11, 'lat', 'lon', 'cell_id').transform(test_df)
-        assert res_df.where(f.col('cell_id_11') == expected_token).count() == 4
+        assert res_df.where(f.col('cell_id') == expected_token).count() == 4

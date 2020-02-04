@@ -7,8 +7,7 @@ import shutil
 @pytest.fixture(scope='session')
 def spark():
     spark = SparkSession.builder \
-        .config("spark.driver.memory", "4g") \
-        .config("spark.executor.memory", "1g") \
+        .master("local[1]") \
         .getOrCreate()
     yield spark
     spark.stop()

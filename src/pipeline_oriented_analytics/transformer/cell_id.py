@@ -9,18 +9,18 @@ class CellId(Transformer):
     """Adds a new column with S2 cell id, given the s2 cell level, lat and lng column names.
     This transformer uses udf with external library call.
     """
-    def __init__(self, level: int, lat_col: str = 'lat', lon_col: str = 'lon', cell_id_col_prefix: str = 'cell_id'):
+    def __init__(self, level: int, lat_col: str = 'lat', lon_col: str = 'lon', output_col: str = 'cell_id'):
         super(CellId, self).__init__()
-        self.level = level
-        self.lat_col = lat_col
-        self.lon_col = lon_col
-        self.cell_id_col = f'{cell_id_col_prefix}_{level}'
-        self.cell_id_udf = f.udf(CellId._cell_id, StringType())
+        self._level = level
+        self._lat_col = lat_col
+        self._lon_col = lon_col
+        self._cell_id_col = output_col
+        self._cell_id_udf = f.udf(CellId._cell_id, StringType())
 
     def _transform(self, dataset: DataFrame) -> DataFrame:
         return dataset.withColumn(
-            self.cell_id_col,
-            self.cell_id_udf(f.lit(self.level), f.col(self.lat_col), f.col(self.lon_col))
+            self._cell_id_col,
+            self._cell_id_udf(f.lit(self._level), f.col(self._lat_col), f.col(self._lon_col))
         )
 
     @classmethod

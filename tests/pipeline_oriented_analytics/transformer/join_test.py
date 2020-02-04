@@ -12,7 +12,7 @@ class TestJoin(object):
         trip_city_cols = ['trip_id', 'city']
         trip_city_df = spark.createDataFrame(trip_city_data, trip_city_cols)
 
-        res_lst = Join(['trip_id'], 'inner', trip_city_df).transform(trip_duration_df).sort('trip_id').collect()
+        res_lst = Join(['trip_id'], Join.Method.inner, trip_city_df).transform(trip_duration_df).sort('trip_id').collect()
 
         assert len(res_lst) == trip_duration_df.count() == 3
         trip_1 = res_lst[0].asDict()
@@ -28,11 +28,11 @@ class TestJoin(object):
         trip_duration_df = spark.createDataFrame(trip_duration_data, trip_duration_cols)
 
         trip_city_data = [(1, 'Madrid'), (2, 'Amsterdam'), (3, 'Alkmaar')]
-        object_city_cols = ['trip_id', 'city']
-        objects_df = spark.createDataFrame(trip_city_data, object_city_cols)
+        trip_city_cols = ['trip_id', 'city']
+        trip_city_df = spark.createDataFrame(trip_city_data, trip_city_cols)
 
-        res_lst = Join(['trip_id'], 'left_anti', objects_df).transform(trip_duration_df).sort('trip_id').collect()
-
+        res_lst = Join(['trip_id'], Join.Method.left_anti, trip_duration_df)\
+            .transform(trip_city_df).sort('trip_id').collect()
         assert len(res_lst) == 1
         trip_1 = res_lst[0].asDict()
         assert (trip_1['trip_id'] == 3) & (trip_1['city'] == 'Alkmaar')

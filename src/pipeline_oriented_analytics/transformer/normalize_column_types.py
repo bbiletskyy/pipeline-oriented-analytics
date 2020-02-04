@@ -17,7 +17,7 @@ class NormalizeColumnTypes(Transformer):
 
     def __init__(self, column_types: Dict[str, str]):
         super(NormalizeColumnTypes, self).__init__()
-        self.column_types = column_types
+        self._column_types = column_types
 
     def _transform(self, dataset: DataFrame):
         def extract_format(s: str) -> str:
@@ -25,8 +25,8 @@ class NormalizeColumnTypes(Transformer):
 
         df = dataset
         for col_name in df.columns:
-            if col_name in self.column_types:
-                col_type = self.column_types[col_name]
+            if col_name in self._column_types:
+                col_type = self._column_types[col_name]
                 if col_type.startswith('date('):
                     df = df.withColumn(col_name, f.to_date(f.col(col_name), extract_format(col_type)))
                 elif col_type.startswith('timestamp('):
