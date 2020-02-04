@@ -109,8 +109,9 @@ ENV/
 .mypy_cache/
 
 # data files
-/data/processed/*.*
-/data/raw/*.*
+data/processed/*.*
+data/raw/*.*
+model/*.*
 *.csv
 *.parquet
 *.crc
