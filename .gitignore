@@ -111,7 +111,7 @@ ENV/
 # data files
 data/processed/*.*
 data/raw/*.*
-# model/*.*
+model/*.*
 *.csv
 *.parquet
 *.crc
