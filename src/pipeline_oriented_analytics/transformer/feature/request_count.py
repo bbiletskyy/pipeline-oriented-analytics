@@ -4,6 +4,7 @@ from pipeline_oriented_analytics.pipe import Pipe
 from pipeline_oriented_analytics.transformer import DropColumns
 from pipeline_oriented_analytics.transformer.feature import *
 import pyspark.sql.functions as f
+from pipeline_oriented_analytics.transformer.feature.time import Time
 
 
 class RequestCount(Transformer):
@@ -28,4 +29,4 @@ class RequestCount(Transformer):
         df = self._pipe.transform(dataset)
         counts_df = df.groupBy(self._grouping_cols).agg(f.count('*').alias(self._output_col))
         joined_df = df.join(counts_df, on=self._grouping_cols, how='left')
-        return DropColumns(self._temp_cols).transform(joined_df)
+        return DropColumns(inputCols=self._temp_cols).transform(joined_df)

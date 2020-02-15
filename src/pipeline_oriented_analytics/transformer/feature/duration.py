@@ -23,4 +23,4 @@ class Duration(Transformer):
             self._output_col = output_col
 
     def _transform(self, dataset: DataFrame) -> DataFrame:
-        return dataset.withColumn(self._output_col, f.round(f.col(self._duration_seconds_col) / self._unit.value, 1))
+        return dataset.withColumn(self._output_col, f.round(f.col(self._duration_seconds_col) / self._unit.value, 0))

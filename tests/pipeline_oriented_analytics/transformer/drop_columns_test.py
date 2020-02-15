@@ -9,7 +9,7 @@ class TestDropColumns(object):
         columns = ['name', 'age', 'city']
         df = spark.createDataFrame(data, columns)
 
-        res_df = DropColumns(['name', 'city']).transform(df)
+        res_df = DropColumns(inputCols=['name', 'city']).transform(df)
 
         assert df.count() == res_df.count()
         assert res_df.columns == ['age']

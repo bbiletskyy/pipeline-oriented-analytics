@@ -29,6 +29,34 @@ init:
 test:
 	$(call execute_in_env, python -m pytest tests/ )
 
+## Generate distance matrix
+dm:
+	$(call execute_in_env, python src/pipeline_oriented_analytics/script/generate_distance_matrix.py)
+
+## Pre-process train set
+ppt:
+	$(call execute_in_env, python src/pipeline_oriented_analytics/script/pre_process.py train)
+
+## Pre-process test set
+ppp:
+	$(call execute_in_env, python src/pipeline_oriented_analytics/script/pre_process.py predict)
+
+## Extract train features
+eft:
+	$(call execute_in_env, python src/pipeline_oriented_analytics/script/extract_features.py train)
+
+## Extract predict features
+efp:
+	$(call execute_in_env, python src/pipeline_oriented_analytics/script/extract_features.py predict)
+
+## Train model
+train:
+	$(call execute_in_env, python src/pipeline_oriented_analytics/script/train.py)
+
+## Make predictions
+predict:
+	$(call execute_in_env, python src/pipeline_oriented_analytics/script/predict.py)
+
 #################################################################################
 # Self Documenting Commands                                                     #
 #################################################################################
