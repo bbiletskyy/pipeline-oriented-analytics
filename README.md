@@ -13,7 +13,7 @@ For example, some features were introduced artificially just for demo purposes.
 ## Getting started
  
 1. Run `make init test` to initialize the conda environment and to launch the tests
-2. (Optional, sample datasets are available) Download complete train and test datasets from [Kaggle's New York City Trip Duration](https://www.kaggle.com/c/nyc-taxi-trip-duration/data) and extract and overwrite `train.csv`, `test.csv` in `data/raw` folder.
+2. (Optional, sample datasets are available) Download complete train and test datasets from [Kaggle's New York City Trip Duration](https://www.kaggle.com/c/nyc-taxi-trip-duration/data), extract them and overwrite `train.csv`, `test.csv` in `data/raw` folder.
 
 ## Running examples
 
