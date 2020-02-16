@@ -19,21 +19,20 @@ from pipeline_oriented_analytics import Phase
 
 def main(argv):
     phase = Phase[argv[0]]
-    #phase = Phase.train
 
     spark = SparkSession.builder \
         .master("local[*]") \
         .config("spark.driver.memory", "4g") \
         .config("spark.executor.memory", "1g") \
         .getOrCreate()
-    print(f'Extractiong features for {phase.name}')
-    ParquetDataFrame(f'data/processed/{phase.name}/inputs', spark).printSchema()
+    print(f'Extracting features for {phase.name}')
+
     features_df = Pipe([
         Time('pickup_datetime',
              [Time.Feature.month, Time.Feature.day_of_month, Time.Feature.day_of_week, Time.Feature.hour]),
         AddMinutes(-15, 'pickup_datetime', '15_min_before'),
-        RequestCount(15, 'pickup_cell_8', '15_min_before', 'requests_pickup_cell'),
-        RequestCount(15, 'dropoff_cell_8', '15_min_before', 'requests_dropoff_cell'),
+        RequestCount(15, 'pickup_cell_6', '15_min_before', 'requests_pickup_cell'),
+        RequestCount(15, 'dropoff_cell_6', '15_min_before', 'requests_dropoff_cell'),
         IF(phase.is_train(), then=[
             Duration(Duration.Unit.minute, 'duration_sec', 'duration_min'),
             DropColumns(inputCols=['duration_sec'])

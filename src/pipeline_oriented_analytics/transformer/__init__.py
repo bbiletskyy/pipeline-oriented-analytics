@@ -10,6 +10,8 @@ from .save_to_parquet import *
 from .drop_columns import *
 from .show import *
 from .sample import *
+from .drop_outliers import *
+
 
 
 

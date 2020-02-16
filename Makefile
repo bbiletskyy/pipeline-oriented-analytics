@@ -30,23 +30,23 @@ test:
 	$(call execute_in_env, python -m pytest tests/ )
 
 ## Generate distance matrix
-dm:
+distance_matrix:
 	$(call execute_in_env, python src/pipeline_oriented_analytics/script/generate_distance_matrix.py)
 
 ## Pre-process train set
-ppt:
+prepare_train:
 	$(call execute_in_env, python src/pipeline_oriented_analytics/script/pre_process.py train)
 
 ## Pre-process test set
-ppp:
+prepare_test:
 	$(call execute_in_env, python src/pipeline_oriented_analytics/script/pre_process.py predict)
 
-## Extract train features
-eft:
+## Extract features from train set
+features_train:
 	$(call execute_in_env, python src/pipeline_oriented_analytics/script/extract_features.py train)
 
-## Extract predict features
-efp:
+## Extract features from test set
+features_test:
 	$(call execute_in_env, python src/pipeline_oriented_analytics/script/extract_features.py predict)
 
 ## Train model
@@ -56,6 +56,10 @@ train:
 ## Make predictions
 predict:
 	$(call execute_in_env, python src/pipeline_oriented_analytics/script/predict.py)
+
+## Hyper-parameter tuning
+select_params:
+	$(call execute_in_env, python src/pipeline_oriented_analytics/script/select_parameters.py)
 
 #################################################################################
 # Self Documenting Commands                                                     #

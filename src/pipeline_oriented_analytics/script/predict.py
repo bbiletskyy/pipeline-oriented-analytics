@@ -25,7 +25,7 @@ def main(argv):
 
     predicted_df = PipelineModel([
         model,
-        DropColumns(inputCols=['features']),
+        DropColumns(inputCols=['features', 'pickup_cell_6_idx', 'dropoff_cell_6_idx']),
         SaveToParquet(predicted_data_path)
     ]).transform(ParquetDataFrame(data_to_predict_path, spark))
 

@@ -11,26 +11,25 @@ from pyspark.ml.regression import DecisionTreeRegressor
 from pyspark.ml.evaluation import RegressionEvaluator
 from pyspark.ml import PipelineModel
 
-def main(argv):
-    phase = Phase.train
 
+def main(argv):
     spark = SparkSession.builder \
         .master("local[*]") \
         .config("spark.driver.memory", "4g") \
         .config("spark.executor.memory", "1g") \
         .getOrCreate()
 
-    features_df = ParquetDataFrame(f'data/processed/{Phase.train.name.lower()}/features', spark)
+    features_df = ParquetDataFrame(f'data/processed/{Phase.train.name}/features', spark)
     test_data_frac = 0.1
     test_features_df, train_features_df = features_df.randomSplit([test_data_frac, 1 - test_data_frac])
     label_col = 'duration_min'
     model = Pipeline(stages=[
-        StringIndexer(inputCol='pickup_cell_8', handleInvalid='keep', outputCol='pickup_cell_8_idx'),
-        StringIndexer(inputCol='dropoff_cell_8', handleInvalid='keep', outputCol='dropoff_cell_8_idx'),
-        VectorAssembler(inputCols=['pickup_cell_8_idx', 'dropoff_cell_8_idx', 'distance', 'month', 'day_of_month',
+        StringIndexer(inputCol='pickup_cell_6', handleInvalid='keep', outputCol='pickup_cell_6_idx'),
+        StringIndexer(inputCol='dropoff_cell_6', handleInvalid='keep', outputCol='dropoff_cell_6_idx'),
+        VectorAssembler(inputCols=['pickup_cell_6_idx', 'dropoff_cell_6_idx', 'distance', 'month', 'day_of_month',
                                    'day_of_week', 'hour', 'requests_pickup_cell', 'requests_dropoff_cell'],
                         outputCol="features"),
-        DecisionTreeRegressor(maxDepth=7, featuresCol='features', labelCol=label_col, maxBins=100)
+        DecisionTreeRegressor(maxDepth=7, featuresCol='features', labelCol=label_col)
     ]).fit(train_features_df)
 
     model_path = 'model/trip_duration_min'
