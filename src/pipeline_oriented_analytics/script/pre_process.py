@@ -20,14 +20,14 @@ def main(argv):
         .config("spark.executor.memory", "1g") \
         .getOrCreate()
 
-    variables = ['id', 'pickup_datetime', 'pickup_longitude', 'pickup_latitude', 'dropoff_longitude',
+    variables = ['id', 'passenger_count', 'pickup_datetime', 'pickup_longitude', 'pickup_latitude', 'dropoff_longitude',
                  'dropoff_latitude']
     lables = ['trip_duration']
     column_names = {'pickup_longitude': 'pickup_lon', 'pickup_latitude': 'pickup_lat',
                     'dropoff_longitude': 'dropoff_lon', 'dropoff_latitude': 'dropoff_lat',
                     'trip_duration': 'duration_sec'}
-    variable_types = {'id': 'string', 'pickup_datetime': 'timestamp', 'pickup_lon': 'double', 'pickup_lat': 'double',
-                      'dropoff_lon': 'double', 'dropoff_lat': 'double'}
+    variable_types = {'id': 'string', 'passenger_count': 'integer', 'pickup_datetime': 'timestamp',
+                      'pickup_lon': 'double', 'pickup_lat': 'double', 'dropoff_lon': 'double', 'dropoff_lat': 'double'}
     label_types = {'duration': 'int'}
 
     if phase.is_predict():

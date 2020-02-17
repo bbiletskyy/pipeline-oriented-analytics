@@ -17,10 +17,10 @@ For example, some features were introduced artificially just for demo purposes.
 
 ## Running examples
 
-1. Execute `make distance_matrix` to generate distance matrix
-2. Execute `make prepare_train features_train train` to pre-process train data, extract train features and train
-3. Execute `make prepare_test features_test predict` to pre-process test data, extract test features and predict
-4. Execute `make select_params` to run hyper-parameter tuning.
+1. run `make distance_matrix` to generate distance matrix
+2. run `make prepare_train features_train train` to pre-process train data, extract train features and train
+3. run `make prepare_test features_test predict` to pre-process test data, extract test features and predict
+4. run `make select_params` to run hyper-parameter tuning.
 
 
 
