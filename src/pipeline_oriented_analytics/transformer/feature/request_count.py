@@ -2,9 +2,8 @@ from pyspark.ml import Transformer
 from pyspark.sql import DataFrame
 from pipeline_oriented_analytics.pipe import Pipe
 from pipeline_oriented_analytics.transformer import DropColumns
-from pipeline_oriented_analytics.transformer.feature import *
+from pipeline_oriented_analytics.transformer.feature import Time, SlotOfHour
 import pyspark.sql.functions as f
-from pipeline_oriented_analytics.transformer.feature.time import Time
 
 
 class RequestCount(Transformer):

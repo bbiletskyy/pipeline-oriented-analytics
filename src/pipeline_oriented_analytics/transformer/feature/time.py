@@ -6,20 +6,6 @@ from pyspark.ml import Transformer
 import pyspark.sql.functions as f
 
 
-# class TimeFeature(Enum):
-#     date = (f.to_date,)
-#     year = (f.year,)
-#     month = (f.month,)
-#     day_of_month = (f.dayofmonth,)
-#     day_of_week = (f.dayofweek,)
-#     hour = (f.hour,)
-#     minute = (f.minute,)
-#     second = (f.second,)
-#
-#     def __init__(self, function: Callable):
-#         self.function = function
-
-
 class Time(Transformer):
     """Adds new column(s) with time feature(s) given a timestamp column to extract necessary features from.
     """
