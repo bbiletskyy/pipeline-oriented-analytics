@@ -8,9 +8,6 @@ from pyspark.sql.types import StringType, FloatType
 
 
 def main(argv):
-    # print("This is the name of the script: ", sys.argv[0])
-    # print("Number of arguments: ", len(sys.argv))
-    # print("The arguments are: ", str(sys.argv))
     spark = SparkSession.builder \
         .master("local[*]") \
         .config("spark.driver.memory", "4g") \

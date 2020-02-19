@@ -24,7 +24,7 @@ def main(argv):
         AddMinutes(-15, 'pickup_datetime', '15_min_before'),
         RequestCount(15, 'pickup_cell_6', '15_min_before', 'requests_pickup_cell'),
         RequestCount(15, 'dropoff_cell_6', '15_min_before', 'requests_dropoff_cell'),
-        IF(phase.is_train(), then=[
+        IF(IF.Predicate.has_column('duration_sec'), then=[
             Duration(Duration.Unit.minute, 'duration_sec', 'duration_min'),
             DropColumns(inputCols=['duration_sec'])
         ]),

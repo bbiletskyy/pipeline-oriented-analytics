@@ -1,6 +1,6 @@
 import pytest
 
-from pipeline_oriented_analytics.transformer.drop_columns import DropColumns
+from pipeline_oriented_analytics.transformer import DropColumns
 
 
 class TestDropColumns(object):

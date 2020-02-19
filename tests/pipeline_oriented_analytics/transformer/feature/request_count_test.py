@@ -1,5 +1,5 @@
 import pytest
-import pyspark.sql.functions as F
+import pyspark.sql.functions as f
 from datetime import datetime
 
 from pipeline_oriented_analytics.transformer.feature import RequestCount
@@ -12,7 +12,7 @@ class TestRequestCount(object):
         df = spark.createDataFrame(data, columns)
         res_df = RequestCount(20, 'cell_id', 'timestamp', 'request_count').transform(df)
         assert set(res_df.columns) == {'id', 'timestamp', 'cell_id', 'request_count'}
-        assert res_df.where(F.col('id') == 1).select('request_count').collect()[0][0] == 1
+        assert res_df.where(f.col('id') == 1).select('request_count').collect()[0][0] == 1
 
     def test_transform_2_requests(self, spark):
         data = [
@@ -22,8 +22,8 @@ class TestRequestCount(object):
         columns = ['id', 'timestamp', 'cell_id']
         df = spark.createDataFrame(data, columns)
         res_df = RequestCount(20, 'cell_id', 'timestamp', 'request_count').transform(df)
-        assert res_df.where(F.col('id') == 1).select('request_count').collect()[0][0] == 2
-        assert res_df.where(F.col('id') == 2).select('request_count').collect()[0][0] == 2
+        assert res_df.where(f.col('id') == 1).select('request_count').collect()[0][0] == 2
+        assert res_df.where(f.col('id') == 2).select('request_count').collect()[0][0] == 2
 
     def test_transform_3_requests(self, spark):
         data = [
@@ -34,6 +34,6 @@ class TestRequestCount(object):
         columns = ['id', 'timestamp', 'cell_id']
         df = spark.createDataFrame(data, columns)
         res_df = RequestCount(20, 'cell_id', 'timestamp', 'request_count').transform(df)
-        assert res_df.where(F.col('id') == 1).select('request_count').collect()[0][0] == 2
-        assert res_df.where(F.col('id') == 2).select('request_count').collect()[0][0] == 2
-        assert res_df.where(F.col('id') == 3).select('request_count').collect()[0][0] == 1
+        assert res_df.where(f.col('id') == 1).select('request_count').collect()[0][0] == 2
+        assert res_df.where(f.col('id') == 2).select('request_count').collect()[0][0] == 2
+        assert res_df.where(f.col('id') == 3).select('request_count').collect()[0][0] == 1
