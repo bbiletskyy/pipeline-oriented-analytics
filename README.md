@@ -2,8 +2,11 @@
 
 This is a tutorial demonstrating pipeline-oriented data analytics approach applied to taxi trip duration data.
 This project should NOT be viewed as an example how to solve a particular regression problem. 
-It is rather a demonstration how to organize code in data analytics projects. 
-For example, some features were introduced artificially just for demo purposes. 
+It is rather a demonstration how to organize computation when solving data analytics prblems. While solving the toy problem some features were introduced artificially just for demo purposes.
+
+The proposed approach is described in the following articles:
+* [Pipeline-Oriented Data Analytics with Spark ML](https://towardsdatascience.com/pipeline-oriented-data-analytics-with-spark-ml-c664befe1c2d)
+* [Pipeline-Oriented Data Analytics with Spark ML. Part 2](https://towardsdatascience.com/pipeline-oriented-data-analytics-with-spark-ml-part-2-3088d7a3c1b5)
 
 ## Prerequisites
 
